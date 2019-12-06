@@ -80,6 +80,9 @@
         </a>
       </li>
     </ul>
+    <button type="primary" @click="test">
+      测试
+    </button>
   </div>
 </template>
 
@@ -91,9 +94,9 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  method: {
+  methods: {
     test () {
-      this.$api.post('recommendation/index', {
+      this.$api.post('index/', {
         'data': 1
         }, response => {
           if (response.status >= 200 && response.status < 300) {
