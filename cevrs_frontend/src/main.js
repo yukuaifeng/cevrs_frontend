@@ -35,6 +35,7 @@ Vue.use(ElementUI)
 Vue.use(bkMagic)
 Vue.use($)
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

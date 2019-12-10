@@ -127,7 +127,7 @@
                                 <h3 class="panel-title">志愿推荐</h3>
                             </div>
                             <div class="panel-body">
-                                <el-steps :active="1" finish-status="success" simple style="margin-top: 20px">
+                                <el-steps :active="carouselNum" finish-status="success" simple style="margin-top: 20px">
                                     <el-step title="输入成绩" ></el-step>
                                     <el-step title="高校特性选择" ></el-step>
                                     <el-step title="志愿选择" ></el-step>
@@ -136,157 +136,106 @@
                                 <!-- 设置面板End -->
                                 <div>
                                     <el-row :gutter="20" class="forms">
-                                        <el-col :span="4" class="page-button">
-                                            <el-button type="primary" icon="el-icon-arrow-left"></el-button>
+                                        <el-col :span="2" class="page-button">
+                                            <el-button type="primary" class="page-button-left" icon="el-icon-arrow-left" :disabled="carouselNum == 1" @click="backStep"></el-button>
                                         </el-col>
-                                        <el-col :span="16">
+                                        <el-col :span="20">
                                             <div class="form-group">
-                                                <div class="container-fluid mb0 " v-if="carousel_num == 1">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">省份：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select name="" id="" class="form-control bk-valign-top">
-                                                                            <option value="选择项1">选择项1</option>
-                                                                            <option value="选择项2">选择项2</option>
-                                                                            <option value="选择项3">选择项3</option>
-                                                                            <option value="选择项4">选择项4</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="control-label col-sm-3 bk-lh30 pt0">分科：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <div class="radio pt0">
-                                                                            <label class="mr10">
-                                                                                <input type="radio" name="optionsRadios" id="" class="bk-top5" value="文科">
-                                                                                <span class="bk-lh30">文科</span>
-                                                                            </label>
-                                                                            <label class="mr10">
-                                                                                <input type="radio" name="optionsRadios" id="" class="bk-top5" value="理科">
-                                                                                <span class="bk-lh30">理科</span>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <form class="form-horizontal"> 
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">分数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                <div class="container-fluid mb0 " v-if="carouselNum == 1">
+                                                    <div class="score-row">
+                                                        <p>首先输入您的高考成绩相关信息</p>
+                                                    </div>
+                                                    <div class="score-row">
+                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
+                                                            <el-form-item label="分科" class="score-row-first">
+                                                                <el-radio v-model="formInput.radio" label="1">文科</el-radio>
+                                                                <el-radio v-model="formInput.radio" label="2">理科</el-radio>
+                                                            </el-form-item>
+                                                            <el-form-item label="分数">
+                                                                <el-input v-model="formInput.score" placeholder="考试分数" size="small" class="input-inline"></el-input>
+                                                            </el-form-item>
+                                                            <el-form-item label="排名">
+                                                                <el-input v-model="formInput.rank" placeholder="排名" size="small" class="input-inline"></el-input>
+                                                            </el-form-item>
+                                                        </el-form>
                                                     </div>
                                                 </div>
-                                                <div class="container-fluid mb0 " v-if="carousel_num == 2">
+                                                <div class="container-fluid mb0 " v-if="carouselNum == 2">
+                                                    <div>
+                                                        <p>根据您心中重要性的先后顺序，对学校的以下特性进行排序</p>
+                                                    </div>
                                                     <div class="row">
-                                                        <div class="col-md-3">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select name="" id="" class="form-control bk-valign-top">
-                                                                            <option value="选择项1">选择项1</option>
-                                                                            <option value="选择项2">选择项2</option>
-                                                                            <option value="选择项3">选择项3</option>
-                                                                            <option value="选择项4">选择项4</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select name="" id="" class="form-control bk-valign-top">
-                                                                            <option value="选择项1">选择项1</option>
-                                                                            <option value="选择项2">选择项2</option>
-                                                                            <option value="选择项3">选择项3</option>
-                                                                            <option value="选择项4">选择项4</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select name="" id="" class="form-control bk-valign-top">
-                                                                            <option value="选择项1">选择项1</option>
-                                                                            <option value="选择项2">选择项2</option>
-                                                                            <option value="选择项3">选择项3</option>
-                                                                            <option value="选择项4">选择项4</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select name="" id="" class="form-control bk-valign-top">
-                                                                            <option value="选择项1">选择项1</option>
-                                                                            <option value="选择项2">选择项2</option>
-                                                                            <option value="选择项3">选择项3</option>
-                                                                            <option value="选择项4">选择项4</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                                                            <el-form-item label="第一" class="ahead-select">
+                                                                <el-select v-model="formInput.firstValue" placeholder="请选择">
+                                                                    <el-option
+                                                                    v-for="item in options"
+                                                                    :key="item.value"
+                                                                    :label="item.label"
+                                                                    :value="item.value">
+                                                                    </el-option>
+                                                                </el-select>
+                                                            </el-form-item>
+                                                            <el-form-item label="第二" class="back-select">
+                                                                <el-select v-model="formInput.secondValue" placeholder="请选择">
+                                                                    <el-option
+                                                                    v-for="item in options"
+                                                                    :key="item.value"
+                                                                    :label="item.label"
+                                                                    :value="item.value">
+                                                                    </el-option>
+                                                                </el-select>
+                                                            </el-form-item>
+                                                        </el-form>
+                                                        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                                                            <el-form-item label="第三" class="ahead-select">
+                                                                <el-select v-model="formInput.thirdValue" placeholder="请选择">
+                                                                    <el-option
+                                                                    v-for="item in options"
+                                                                    :key="item.value"
+                                                                    :label="item.label"
+                                                                    :value="item.value">
+                                                                    </el-option>
+                                                                </el-select>
+                                                            </el-form-item>
+                                                            <el-form-item label="第四" class="back-select">
+                                                                <el-select v-model="formInput.fourthValue" placeholder="请选择">
+                                                                    <el-option
+                                                                    v-for="item in options"
+                                                                    :key="item.value"
+                                                                    :label="item.label"
+                                                                    :value="item.value">
+                                                                    </el-option>
+                                                                </el-select>
+                                                            </el-form-item>
+                                                        </el-form>
                                                     </div>
                                                 </div>
-                                                <div class="container-fluid mb0 " v-if="carousel_num == 3">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <form class="form-horizontal">
-                                                                <div class="form-group clearfix ">
-                                                                    <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                <div class="container-fluid mb0 " v-if="carouselNum == 3">
+                                                    <div>
+                                                        <p>请选择三种填报策略下的推荐院校个数</p>
+                                                    </div>
+                                                    <div class="num-row">
+                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
+                                                            <el-form-item label="冲" class="num-row-first">
+                                                                <el-input v-model="formInput.riskNum" placeholder="冲的数目" size="small" class="input-num"></el-input>
+                                                            </el-form-item>
+                                                            <el-form-item label="稳">
+                                                                <el-input v-model="formInput.surelyNum" placeholder="稳的数目" size="small" class="input-num"></el-input>
+                                                            </el-form-item>
+                                                            <el-form-item label="保" class="input-num">
+                                                                <el-input v-model="formInput.defiNum" placeholder="保的数目" size="small"></el-input>
+                                                            </el-form-item>
+                                                        </el-form>
+                                                    </div>
+                                                    <div>
+                                                        <el-button round type="primary" class="submit-button">提交</el-button>
                                                     </div>
                                                 </div>    
                                             </div>
                                         </el-col>
-                                        <el-col :span="4" class="page-button">
-                                            <el-button type="primary" icon="el-icon-arrow-right"></el-button>
+                                        <el-col :span="2" class="page-button">
+                                            <el-button type="primary" class="page-button-right" icon="el-icon-arrow-right" :disabled="carouselNum == 3" @click="aheadStep"></el-button>
                                         </el-col>
                                     </el-row>
                                 </div>
@@ -351,16 +300,58 @@
     export default {
         data() {
         return {
-            carousel_num: 1,
+            carouselNum: 1,
             imgList: [
                 {id: 0, idView: require('../../assets/image/fight0.jpg')},
                 {id: 1, idView: require('../../assets/image/fight1.jpeg')},
                 {id: 2, idView: require('../../assets/image/fight2.jpg')},
                 {id: 3, idView: require('../../assets/image/fight3.jpeg')}
             ],
-            imgHeight: "200px"
+            imgHeight: "200px",
+            options: [
+                {
+                    value: "1",
+                    label: "综合实力"
+                },
+                {
+                    value: "2",
+                    label: "所在城市"
+                },
+                {
+                    value: "3",
+                    label: "就业率"
+                },
+                {
+                    value: "4",
+                    label: "国家资金"
+                },
+            ],
+            
+            formInput: {
+                score: '',
+                rank: '',
+                radio: '',
+                firstValue: '',
+                secondValue: '',
+                thirdValue: '',
+                fourthValue: '',
+                riskNum: '',
+                surelyNum: '',
+                defiNum: '',
+            }
         }
-    }
+    },
+        methods: {
+            backStep: function(carouselNum) {
+                console.log(this.carouselNum)
+                this.carouselNum -= 1
+            }, 
+            aheadStep: function(carouselNum) {
+                this.carouselNum += 1
+                console.log(this.carouselNum)
+            }
+            
+        }
     }
 </script>
 
@@ -403,9 +394,35 @@
   }
   .page-button {
       margin-top: 50px;
+      align-items: center;
   }
-
   .panel-title {
       text-align: center
+  }
+  .form-inline {
+      width:100px
+  }
+  .score-row {
+      margin-top: 5%;
+  }
+  .score-row-first {
+      margin-left: 5%;
+  }
+  .ahead-select {
+      margin-left: 15%;
+  }
+  .back-select {
+      margin-left: 5%;
+  }
+  .num-row {
+      margin-top: 5%;
+  }
+  .num-row-first {
+      margin-left: 5%;
+  }
+  .submit-button {
+      margin-left: 42%;
+      margin-right: auto;
+      width: 100px
   }
 </style>
