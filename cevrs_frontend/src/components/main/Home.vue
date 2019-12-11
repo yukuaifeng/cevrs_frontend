@@ -223,8 +223,8 @@
                                                             <el-form-item label="稳">
                                                                 <el-input v-model="formInput.surelyNum" placeholder="稳的数目" size="small" class="input-num"></el-input>
                                                             </el-form-item>
-                                                            <el-form-item label="保" class="input-num">
-                                                                <el-input v-model="formInput.defiNum" placeholder="保的数目" size="small"></el-input>
+                                                            <el-form-item label="保">
+                                                                <el-input v-model="formInput.defiNum" placeholder="保的数目" size="small" class="input-num" ></el-input>
                                                             </el-form-item>
                                                         </el-form>
                                                     </div>
@@ -405,9 +405,6 @@
   .score-row {
       margin-top: 5%;
   }
-  .score-row-first {
-      margin-left: 5%;
-  }
   .ahead-select {
       margin-left: 15%;
   }
@@ -418,7 +415,10 @@
       margin-top: 5%;
   }
   .num-row-first {
-      margin-left: 5%;
+      margin-left:5px; 
+  }
+  .input-num {
+      width: 190px
   }
   .submit-button {
       margin-left: 42%;
