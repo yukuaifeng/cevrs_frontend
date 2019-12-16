@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import '../theme/index.css'
 import App from './App'
@@ -34,6 +35,7 @@ Vue.prototype.$api = Api
 Vue.use(ElementUI)
 Vue.use(bkMagic)
 Vue.use($)
+Vue.use(VueRouter)
 
 
 /* eslint-disable no-new */

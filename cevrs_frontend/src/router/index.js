@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Navi from '@/components/Navi'
-import Foot from '@/components/Foot'
 import Home from '@/components/main/Home'
+import Result from '@/components/main/Result'
 
 Vue.use(Router)
 
@@ -14,14 +13,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/Navi',
-      name: 'Navi',
-      component: Navi
-    },
-    {
-      path: '/',
-      name: 'Foot',
-      component: Foot
+      path: '/Result',
+      name: 'Result',
+      component: Result
     }
   ]
 })

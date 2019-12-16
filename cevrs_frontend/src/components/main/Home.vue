@@ -1,79 +1,5 @@
 <template>
     <div class="king-page-box">
-        <div class="king-layout1-header">
-            <nav>
-                <div style="width:100%;height:50px;" class="king-header king-header4 ">
-                    <div class="king-header-inner">
-                        <div class="king-header-brand">
-                            <a href="javascript:;">
-                                <img src="https://magicbox.bk.tencent.com/static_api/v3/components/horizontal_nav8/images/logo.png" height="30">
-                            </a>
-                        </div>
-                        <div class="king-header-list list2">
-                            <ul>
-                                <li> <a href="javascript:;"><i class="glyphicon glyphicon-shopping-cart"></i></a> </li>
-                                <li> <a href="javascript:;"><i class="glyphicon glyphicon-search"></i></a> </li>
-                            </ul>
-                        </div>
-                        <div class="king-header-list list1">
-                            <ul>
-                                <li class="active">
-                                    <a href="javascript:void(0);" class="f14">
-                                        <span>首页</span>
-                                    </a>
-                                    <ul class="king-submenu"> </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="f14">
-                                        <span>信息查询</span>
-                                    </a>
-                                    <ul class="king-submenu">
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <span>高校信息</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <span>专业信息</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <span>录取批次线</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="f14">
-                                        <span>模拟志愿</span>
-                                    </a>
-                                    <ul class="king-submenu"> </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="f14">
-                                        <span>个人中心</span>
-                                    </a>
-                                    <ul class="king-submenu">
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <span>编辑信息</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span>退出登录</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
         <div class="king-layout2-main mt15" style="width:960px;">
             <div class="carousel">
                 <el-carousel indicator-position="outside" :interval="4000" type="card" :height="imgHeight">
@@ -229,7 +155,7 @@
                                                         </el-form>
                                                     </div>
                                                     <div>
-                                                        <el-button round type="primary" class="submit-button">提交</el-button>
+                                                        <el-button round type="primary" class="submit-button" @click="submit">提交</el-button>
                                                     </div>
                                                 </div>    
                                             </div>
@@ -349,6 +275,9 @@
             aheadStep: function(carouselNum) {
                 this.carouselNum += 1
                 console.log(this.carouselNum)
+            },
+            submit: function(){
+                this.$router.push({ name: 'Result'})
             }
             
         }

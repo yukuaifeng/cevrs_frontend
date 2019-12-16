@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Navi></Navi>
     <div class="container">
       <router-view></router-view>
     </div>
@@ -9,8 +10,9 @@
 
 <script>
 import Foot from './components/Foot.vue'
+import Navi from './components/Navi.vue'
 export default {
-  components: {Foot},
+  components: {Foot, Navi},
   name: 'App'
 }
 </script>
