@@ -31,6 +31,7 @@ axios.defaults.headers.patch['X-CSRFToken'] = getCookie('csrftoken')
 axios.defaults.headers.delete['X-CSRFToken'] = getCookie('csrftoken')
 Vue.config.productionTip = false
 Vue.prototype.$api = Api
+Vue.prototype.$axios = axios
 
 Vue.use(ElementUI)
 Vue.use(bkMagic)

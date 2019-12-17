@@ -91,7 +91,7 @@
                                                         <p>根据您心中重要性的先后顺序，对学校的以下特性进行排序</p>
                                                     </div>
                                                     <div class="row">
-                                                        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
                                                             <el-form-item label="第一" class="ahead-select">
                                                                 <el-select v-model="formInput.firstValue" placeholder="请选择">
                                                                     <el-option
@@ -113,7 +113,7 @@
                                                                 </el-select>
                                                             </el-form-item>
                                                         </el-form>
-                                                        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
                                                             <el-form-item label="第三" class="ahead-select">
                                                                 <el-select v-model="formInput.thirdValue" placeholder="请选择">
                                                                     <el-option
@@ -277,6 +277,18 @@
                 console.log(this.carouselNum)
             },
             submit: function(){
+                console.log(this.formInput)
+                this.$axios({
+                    method: 'post',
+                    url: 'http://localhost:8000/',
+                    params: {
+                        formInput: this.formInput
+                    }
+                }).then(
+                    function (response) {
+                        console.log(response.data)
+                    }
+                )
                 this.$router.push({ name: 'Result'})
             }
             
