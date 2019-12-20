@@ -277,13 +277,22 @@
                 console.log(this.carouselNum)
             },
             submit: function(){
-                console.log(this.formInput)
+                console.log(this.formInput.score)
                 this.$axios({
                     method: 'post',
                     url: 'http://localhost:8000/',
-                    params: {
-                        formInput: this.formInput
-                    }
+                    data: this.qs.stringify({
+                        score: this.formInput.score,
+                        rank: this.formInput.rank,
+                        radio: this.formInput.radio,
+                        firstValue: this.formInput.firstValue,
+                        secondValue: this.formInput.secondValue,
+                        thirdValue: this.formInput.thirdValue,
+                        fourthValue: this.formInput.fourthValue,
+                        riskNum: this.formInput.riskNum,
+                        surelyNum: this.formInput.surelyNum,
+                        defiNum: this.formInput.defiNum
+                    })
                 }).then(
                     function (response) {
                         console.log(response.data)

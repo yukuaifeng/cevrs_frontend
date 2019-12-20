@@ -11,6 +11,7 @@ import axios from 'axios'
 import bkMagic from 'bk-magic-vue'
 import 'bk-magic-vue/dist/bk-magic-vue.min.css'
 import $ from 'jquery'
+import qs from 'qs'
 
 
 function getCookie(name) {
@@ -24,7 +25,7 @@ function getCookie(name) {
 }
 
 axios.defaults.withCredentials  = true
-axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.defaults.headers.post['X-CSRFToken'] = getCookie('csrftoken')
 axios.defaults.headers.put['X-CSRFToken'] = getCookie('csrftoken')
 axios.defaults.headers.patch['X-CSRFToken'] = getCookie('csrftoken')
@@ -32,6 +33,7 @@ axios.defaults.headers.delete['X-CSRFToken'] = getCookie('csrftoken')
 Vue.config.productionTip = false
 Vue.prototype.$api = Api
 Vue.prototype.$axios = axios
+Vue.prototype.qs = qs
 
 Vue.use(ElementUI)
 Vue.use(bkMagic)
