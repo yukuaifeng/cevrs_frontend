@@ -67,33 +67,33 @@
                                         </el-col>
                                         <el-col :span="20">
                                             <div class="form-group">
-                                                <div class="container-fluid mb0 " v-if="carouselNum == 1">
+                                                <div class="container-fluid mb0 " v-show="carouselNum == 1">
                                                     <div class="score-row">
                                                         <p>首先输入您的高考成绩相关信息</p>
                                                     </div>
                                                     <div class="score-row">
-                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
-                                                            <el-form-item label="分科" class="score-row-first">
+                                                        <el-form :inline="true" :model="formInput" ref="scoreRow" :rules="scoreRules" class="demo-form-inline">
+                                                            <el-form-item label="分科" class="score-row-first" prop="radio">
                                                                 <el-radio v-model="formInput.radio" label="1">文科</el-radio>
                                                                 <el-radio v-model="formInput.radio" label="2">理科</el-radio>
                                                             </el-form-item>
-                                                            <el-form-item label="分数">
-                                                                <el-input v-model="formInput.score" placeholder="考试分数" size="small" class="input-inline"></el-input>
+                                                            <el-form-item label="分数" prop="score">
+                                                                <el-input v-model.number="formInput.score" placeholder="考试分数" size="small" class="input-inline"></el-input>
                                                             </el-form-item>
-                                                            <el-form-item label="排名">
-                                                                <el-input v-model="formInput.rank" placeholder="排名" size="small" class="input-inline"></el-input>
+                                                            <el-form-item label="排名" prop="rank">
+                                                                <el-input v-model.number="formInput.rank" placeholder="排名" size="small" class="input-inline"></el-input>
                                                             </el-form-item>
                                                         </el-form>
                                                     </div>
                                                 </div>
-                                                <div class="container-fluid mb0 " v-if="carouselNum == 2">
+                                                <div class="container-fluid mb0 " v-show="carouselNum == 2">
                                                     <div>
                                                         <p>根据您心中重要性的先后顺序，对学校的以下特性进行排序</p>
                                                     </div>
                                                     <div class="row">
-                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
-                                                            <el-form-item label="第一" class="ahead-select">
-                                                                <el-select v-model="formInput.firstValue" placeholder="请选择">
+                                                        <el-form :inline="true" :model="formInput" ref="selectRowOne" :rules="selectRulesOne" class="demo-form-inline">
+                                                            <el-form-item label="第一" class="ahead-select" prop="firstValue">
+                                                                <el-select v-model="formInput.firstValue" placeholder="请选择" @change="selectChange">
                                                                     <el-option
                                                                     v-for="item in options"
                                                                     :key="item.value"
@@ -102,8 +102,8 @@
                                                                     </el-option>
                                                                 </el-select>
                                                             </el-form-item>
-                                                            <el-form-item label="第二" class="back-select">
-                                                                <el-select v-model="formInput.secondValue" placeholder="请选择">
+                                                            <el-form-item label="第二" class="back-select" prop="secondValue">
+                                                                <el-select v-model="formInput.secondValue" placeholder="请选择" @change="selectChange">
                                                                     <el-option
                                                                     v-for="item in options"
                                                                     :key="item.value"
@@ -113,9 +113,9 @@
                                                                 </el-select>
                                                             </el-form-item>
                                                         </el-form>
-                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
-                                                            <el-form-item label="第三" class="ahead-select">
-                                                                <el-select v-model="formInput.thirdValue" placeholder="请选择">
+                                                        <el-form :inline="true" :model="formInput" ref="selectRowTwo" :rules="selectRulesTwo" class="demo-form-inline">
+                                                            <el-form-item label="第三" class="ahead-select" prop="thirdValue">
+                                                                <el-select v-model="formInput.thirdValue" placeholder="请选择" @change="selectChange">
                                                                     <el-option
                                                                     v-for="item in options"
                                                                     :key="item.value"
@@ -124,8 +124,8 @@
                                                                     </el-option>
                                                                 </el-select>
                                                             </el-form-item>
-                                                            <el-form-item label="第四" class="back-select">
-                                                                <el-select v-model="formInput.fourthValue" placeholder="请选择">
+                                                            <el-form-item label="第四" class="back-select" prop="fourthValue">
+                                                                <el-select v-model="formInput.fourthValue" placeholder="请选择" @change="selectChange">
                                                                     <el-option
                                                                     v-for="item in options"
                                                                     :key="item.value"
@@ -137,20 +137,20 @@
                                                         </el-form>
                                                     </div>
                                                 </div>
-                                                <div class="container-fluid mb0 " v-if="carouselNum == 3">
+                                                <div class="container-fluid mb0 " v-show="carouselNum == 3">
                                                     <div>
                                                         <p>请选择三种填报策略下的推荐院校个数</p>
                                                     </div>
                                                     <div class="num-row">
-                                                        <el-form :inline="true" :model="formInput" class="demo-form-inline">
-                                                            <el-form-item label="冲" class="num-row-first">
-                                                                <el-input v-model="formInput.riskNum" placeholder="冲的数目" size="small" class="input-num"></el-input>
+                                                        <el-form :inline="true" :model="formInput" ref="numRow" :rules="numRules" class="demo-form-inline">
+                                                            <el-form-item label="冲" class="num-row-first" prop="riskNum">
+                                                                <el-input v-model.number="formInput.riskNum" placeholder="冲的数目" size="small" class="input-num"></el-input>
                                                             </el-form-item>
-                                                            <el-form-item label="稳">
-                                                                <el-input v-model="formInput.surelyNum" placeholder="稳的数目" size="small" class="input-num"></el-input>
+                                                            <el-form-item label="稳" prop="surelyNum">
+                                                                <el-input v-model.number="formInput.surelyNum" placeholder="稳的数目" size="small" class="input-num"></el-input>
                                                             </el-form-item>
-                                                            <el-form-item label="保">
-                                                                <el-input v-model="formInput.defiNum" placeholder="保的数目" size="small" class="input-num" ></el-input>
+                                                            <el-form-item label="保" prop="defiNum">
+                                                                <el-input v-model.number="formInput.defiNum" placeholder="保的数目" size="small" class="input-num"></el-input>
                                                             </el-form-item>
                                                         </el-form>
                                                     </div>
@@ -225,48 +225,105 @@
 <script>
     export default {
         data() {
-        return {
-            carouselNum: 1,
-            imgList: [
-                {id: 0, idView: require('../../assets/image/fight0.jpg')},
-                {id: 1, idView: require('../../assets/image/fight1.jpeg')},
-                {id: 2, idView: require('../../assets/image/fight2.jpg')},
-                {id: 3, idView: require('../../assets/image/fight3.jpeg')}
-            ],
-            imgHeight: "200px",
-            options: [
-                {
-                    value: "1",
-                    label: "综合实力"
-                },
-                {
-                    value: "2",
-                    label: "所在城市"
-                },
-                {
-                    value: "3",
-                    label: "就业率"
-                },
-                {
-                    value: "4",
-                    label: "国家资金"
-                },
-            ],
-            
-            formInput: {
-                score: '',
-                rank: '',
-                radio: '',
-                firstValue: '',
-                secondValue: '',
-                thirdValue: '',
-                fourthValue: '',
-                riskNum: '',
-                surelyNum: '',
-                defiNum: '',
+            var selectCheck = (rule, value, callback) => {
+                if(!value) {
+                    console.log('hello');
+                    return callback('不能为空!')
+                } else {
+                    if( selectArray.includes(value) ) {
+                        return callback('有重复选项！')
+                    } else {
+                        callback()
+                    }
+                }
             }
-        }
-    },
+            return {
+                carouselNum: 1,
+                imgList: [
+                    {id: 0, idView: require('../../assets/image/fight0.jpg')},
+                    {id: 1, idView: require('../../assets/image/fight1.jpeg')},
+                    {id: 2, idView: require('../../assets/image/fight2.jpg')},
+                    {id: 3, idView: require('../../assets/image/fight3.jpeg')}
+                ],
+                imgHeight: "200px",
+                options: [
+                    {
+                        value: "1",
+                        label: "综合实力"
+                    },
+                    {
+                        value: "2",
+                        label: "所在城市"
+                    },
+                    {
+                        value: "3",
+                        label: "就业率"
+                    },
+                    {
+                        value: "4",
+                        label: "国家资金"
+                    },
+                ],
+                scoreRules: {
+                    radio: [
+                        { required: true, message: "请选择文理分科", trigger: "blur" }
+                    ],
+                    score: [
+                        { required: true, message: "请输入高考分数", trigger: "blur"},
+                        { type: "number", message: "请输入数字", trigger: "blur"}
+                    ],
+                    rank: [
+                        { required: true, message: "请输入高考排名", trigger: "blur"},
+                        { type: "number", message: "请输入数字", trigger: "blur"}
+                    ]
+                },
+                selectRulesOne: {
+                    firstValue: [
+                        { required: true, message: "不能为空", trigger: "change" }
+                    ],
+                    secondValue: [
+                        { required: true, message: "不能为空", trigger: "change" }
+                    ]
+                },
+                selectRulesTwo: {
+                    thirdValue: [
+                        { required: true, message: "不能为空", trigger: "change" }
+                    ],
+                    fourthValue: [
+                        { required: true, message: "不能为空", trigger: "change" }
+                    ]
+                },
+                numRules: {
+                    riskNum: [
+                        { required: true, message: "请输入冲策略的推荐个数", trigger: "blur" },
+                        { type: "number", message: "请输入数字", trigger: "blur"}
+                    ],
+                    surelyNum: [
+                        { required: true, message: "请输入稳策略的推荐个数", trigger: "blur"},
+                        { type: "number", message: "请输入数字", trigger: "blur"}
+                    ],
+                    defiNum: [
+                        { required: true, message: "请输入保策略的推荐个数", trigger: "blur"},
+                        { type: "number", message: "请输入数字", trigger: "blur"}
+                    ]
+                },
+                formInput: {
+                    score: 600,
+                    rank: 5000,
+                    radio: '2',
+                    firstValue: '',
+                    secondValue: '',
+                    thirdValue: '',
+                    fourthValue: '',
+                    riskNum: 3,
+                    surelyNum: 4,
+                    defiNum: 4,
+                },
+                checkResultArray: [],
+                formArray: ['scoreRow', 'selectRowOne', 'selectRowTwo', 'numRow'],
+                selectArray: []
+            }
+        },
         methods: {
             backStep: function(carouselNum) {
                 console.log(this.carouselNum)
@@ -274,31 +331,76 @@
             }, 
             aheadStep: function(carouselNum) {
                 this.carouselNum += 1
+                const that = this
+                if (this.carouselNum == 2) {
+                    console.log(that.$refs['selectRow'])
+                    // that.$refs['selectRow'].clearValidate()
+                }
+                if (this.carouselNum == 3) {
+                    // that.$refs['numRow'].clearValidate()
+                }
                 console.log(this.carouselNum)
             },
-            submit: function(){
-                console.log(this.formInput.score)
-                this.$axios({
-                    method: 'post',
-                    url: 'http://localhost:8000/',
-                    data: this.qs.stringify({
-                        score: this.formInput.score,
-                        rank: this.formInput.rank,
-                        radio: this.formInput.radio,
-                        firstValue: this.formInput.firstValue,
-                        secondValue: this.formInput.secondValue,
-                        thirdValue: this.formInput.thirdValue,
-                        fourthValue: this.formInput.fourthValue,
-                        riskNum: this.formInput.riskNum,
-                        surelyNum: this.formInput.surelyNum,
-                        defiNum: this.formInput.defiNum
+            selectChange: function (value) {
+                if (this.selectArray.includes(value)) {
+                    this.$message.error("不能重复选择")
+                    this.formInput.firstValue = ''
+                    this.formInput.secondValue = ''
+                    this.formInput.thirdValue = ''
+                    this.formInput.fourthValue = ''
+                    this.selectArray = []
+                } else {
+                    this.selectArray.push(value)
+                }
+                console.log(this.selectArray)
+            },
+            checkForms: function(formName) {
+                const that = this
+                let result = new Promise(function(resolve, reject) {
+                    that.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            resolve();
+                        } else {
+                            reject()
+                        }
                     })
-                }).then(
-                    function (response) {
-                        console.log(response.data)
-                    }
-                )
-                this.$router.push({ name: 'Result'})
+                })
+                this.checkResultArray.push(result)
+            },
+            submit: function(){
+                const that = this
+                this.formArray.forEach(item => {
+                    this.checkForms(item)
+                })
+                Promise.all(that.checkResultArray).then(function () {
+                    console.log("this is done")
+                    console.log(that.checkResultArray)
+                    that.$axios({
+                            method: 'post',
+                            url: 'http://localhost:8000/',
+                            data: that.qs.stringify({
+                                score: that.formInput.score,
+                                rank: that.formInput.rank,
+                                radio: that.formInput.radio,
+                                firstValue: that.formInput.firstValue,
+                                secondValue: that.formInput.secondValue,
+                                thirdValue: that.formInput.thirdValue,
+                                fourthValue: that.formInput.fourthValue,
+                                riskNum: that.formInput.riskNum,
+                                surelyNum: that.formInput.surelyNum,
+                                defiNum: that.formInput.defiNum
+                            })
+                        }).then(
+                            function (response) {
+                                console.log(response.data);
+                                that.$store.dispatch('changeResults', response.data);  
+                            }
+                        ),
+                        that.$router.push({ name: 'Result'})
+                }).catch(function (error){
+                        that.$message.error('表单输入有误，请确认后提交');
+                }); 
+                that.checkResultArray = []
             }
             
         }
@@ -365,7 +467,7 @@
       margin-top: 5%;
   }
   .num-row-first {
-      margin-left:5px; 
+      margin-left:0; 
   }
   .input-num {
       width: 190px

@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import '../theme/index.css'
@@ -10,8 +11,9 @@ import Api from './api/index.js'
 import axios from 'axios'
 import bkMagic from 'bk-magic-vue'
 import 'bk-magic-vue/dist/bk-magic-vue.min.css'
-import $ from 'jquery'
 import qs from 'qs'
+import store from './store'
+import echarts from 'echarts'
 
 
 function getCookie(name) {
@@ -34,16 +36,18 @@ Vue.config.productionTip = false
 Vue.prototype.$api = Api
 Vue.prototype.$axios = axios
 Vue.prototype.qs = qs
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI)
 Vue.use(bkMagic)
-Vue.use($)
 Vue.use(VueRouter)
+Vue.use(Vuex)
 
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>',
