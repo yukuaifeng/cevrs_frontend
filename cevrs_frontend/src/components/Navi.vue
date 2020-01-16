@@ -5,15 +5,15 @@
             <div class="king-header-inner">
                 <div class="king-header-brand">
                     <a href="javascript:;">
-                        <img src="https://magicbox.bk.tencent.com/static_api/v3/components/horizontal_nav8/images/logo.png" height="30">
+                        <img src="static/image/title.jpg" height="35" width="80">
                     </a>
                 </div>
-                <div class="king-header-list list2">
+                <!-- <div class="king-header-list list2">
                     <ul>
                         <li> <a href="javascript:;"><i class="glyphicon glyphicon-shopping-cart"></i></a> </li>
                         <li> <a href="javascript:;"><i class="glyphicon glyphicon-search"></i></a> </li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="king-header-list list1">
                     <ul>
                         <li class="active">
@@ -39,7 +39,7 @@
                                 </li>
                                 <li>
                                     <a href="javascript:void(0);">
-                                        <span>录取批次线</span>
+                                        <router-link to="/GradeLine">录取批次线</router-link>
                                     </a>
                                 </li>
                             </ul>

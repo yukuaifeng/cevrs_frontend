@@ -89,6 +89,7 @@
                                                 <div class="container-fluid mb0 " v-show="carouselNum == 2">
                                                     <div>
                                                         <p>根据您心中重要性的先后顺序，对学校的以下特性进行排序</p>
+                                                        <p>“第一”代表最重要，“第四”代表最不重要</p>
                                                     </div>
                                                     <div class="row">
                                                         <el-form :inline="true" :model="formInput" ref="selectRowOne" :rules="selectRulesOne" class="demo-form-inline">
@@ -140,6 +141,7 @@
                                                 <div class="container-fluid mb0 " v-show="carouselNum == 3">
                                                     <div>
                                                         <p>请选择三种填报策略下的推荐院校个数</p>
+                                                        <p>“冲”代表风险较高的推荐策略，“稳”代表保守的推荐策略，“保”代表保底的推荐策略</p>
                                                     </div>
                                                     <div class="num-row">
                                                         <el-form :inline="true" :model="formInput" ref="numRow" :rules="numRules" class="demo-form-inline">
