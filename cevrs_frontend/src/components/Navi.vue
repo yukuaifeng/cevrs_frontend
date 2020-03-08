@@ -29,12 +29,12 @@
                             <ul class="king-submenu">
                                 <li>
                                     <a href="javascript:void(0);">
-                                        <span>高校信息</span>
+                                        <router-link to="/SchoolTable">学校信息</router-link>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0);">
-                                        <span>专业信息</span>
+                                        <router-link to="/MajorTable">专业信息</router-link>
                                     </a>
                                 </li>
                                 <li>
@@ -56,14 +56,10 @@
                             </a>
                             <ul class="king-submenu">
                                 <li>
-                                    <a href="javascript:void(0);">
-                                        <span>编辑信息</span>
-                                    </a>
+                                    <router-link to="/Register">注册</router-link>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <span>退出登录</span>
-                                    </a>
+                                    <router-link to="/Login">登录</router-link>
                                 </li>
                             </ul>
                         </li>
