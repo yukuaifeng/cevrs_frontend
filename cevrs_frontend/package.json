@@ -14,7 +14,7 @@
     "bk-magic-vue": "^2.1.8-beta.9",
     "echarts": "^4.5.0",
     "element-ui": "^2.13.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "qs.js": "^0.1.12",
     "v-distpicker": "^1.2.2",
     "vant": "^2.5.3",
