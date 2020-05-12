@@ -18,7 +18,9 @@
                     <ul>
                         <li class="active">
                             <a href="javascript:void(0);" class="f14">
-                                <span>首页</span>
+                                <span>
+                                    <router-link to="/" style="font-size:1em">主页</router-link>
+                                </span>
                             </a>
                             <ul class="king-submenu"> </ul>
                         </li>

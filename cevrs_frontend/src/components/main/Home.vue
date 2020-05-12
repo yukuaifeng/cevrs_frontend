@@ -318,7 +318,7 @@
                     thirdValue: '',
                     fourthValue: '',
                     riskNum: 3,
-                    surelyNum: 4,
+                    surelyNum: 3,
                     defiNum: 4,
                 },
                 checkResultArray: [],
@@ -379,7 +379,7 @@
                     console.log(that.checkResultArray)
                     that.$axios({
                             method: 'post',
-                            url: 'http://localhost:8000/',
+                            url: 'http://localhost:8000/recommand/',
                             data: that.qs.stringify({
                                 score: that.formInput.score,
                                 rank: that.formInput.rank,

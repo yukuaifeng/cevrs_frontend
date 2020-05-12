@@ -380,8 +380,8 @@ export default {
                     speciality: "985, 211"
                 },
                 {
-                    name: "复旦大学",
-                    area: "上海市",
+                    name: "中南大学",
+                    area: "湖南-长沙市",
                     funder: "公办院校",
                     kind: "综合类院校",
                     manager: "教育部",
