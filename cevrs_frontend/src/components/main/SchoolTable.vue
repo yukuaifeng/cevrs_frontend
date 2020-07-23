@@ -496,11 +496,28 @@ export default {
                 Vue.set(that.condition,that.count++,v);
             });         
         },
+        allOut:function(index){
+            const that = this;
+            var item=this.category[index].items;
+            item.filter(function (v,key) {
+                v.active=false;
+                that.condition.filter(function(v2,i){
+                    if(v.name==v2.name){
+                        that.condition.splice(i,1);
+                        that.count++;
+                    }
+                });                 
+                Vue.set(that.condition,that.count--,v);
+            });         
+        },
         headClass: function(){
             return "background: #A9A9A9; font-size: 16px; color: #000000"
         },
         detailInfo: function() {
             this.$router.push({ name: 'SchoolDetail' })
+        },
+        fetchTable: function() {
+            
         }
     }
 }
